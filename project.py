@@ -38,7 +38,6 @@ class Chess_Game():
 
     def __init__(self) -> None:
         pygame.init()
-        background = pygame.image.load("fidel.jpg")
         self.SCREEN_WIDTH = 850
         self.SCREEN_HEIGHT = 850
         self.thisScreen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
@@ -59,11 +58,17 @@ class Chess_Piece(Chess_Game):
     def __init__(self, chess_game) -> None:
         self.thisScreen = chess_game.screen
 
-    def drawPiece(self, x, y) -> pygame.image:
+    def drawTops(self, x, y) -> pygame.image:
         self.xCoord = x
         self.yCoord = y
 
-        self.screen.blit(self.thisImage, (x,y))
+        self.screen.blit(self.topImage, (x,y))
+
+    def drawBots(self, x, y) -> pygame.image:
+        self.xCoord = x
+        self.yCoord = y
+
+        self.screen.blit(self.botImage, (x,y))
 
     def takePiece() -> None:
         pass
@@ -91,20 +96,20 @@ class Pawn(Chess_Piece, Chess_Board, Chess_Game):
     def __init__(self, game) -> None:
         super()
         self.screen = game.thisScreen
-        self.thisImage = pygame.image.load("pawn.jpg")
-        self.thisImage = pygame.transform.scale(self.thisImage, (95, 95)) 
+        self.topImage = pygame.transform.scale(pygame.image.load("tPawn.jpg"), (95, 95))
+        self.botImage = pygame.transform.scale(pygame.image.load("bPawn.jpg"), (95, 95))
 
 
 class King(Chess_Piece, Chess_Board, Chess_Game):
     """
-    This class implements the king piece (Legendary lord) 
+    This class implements the king piece
 
     """
     def __init__(self, game) -> None:
         super()
         self.screen = game.thisScreen
-        self.thisImage = pygame.image.load("king.jpg")
-        self.thisImage = pygame.transform.scale(self.thisImage, (95, 95))
+        self.topImage = pygame.transform.scale(pygame.image.load("tKing.jpg"), (95, 95))
+        self.botImage = pygame.transform.scale(pygame.image.load("bKing.jpg"), (95, 95))
 
 class Queen(Chess_Piece, Chess_Board, Chess_Game):
     """
@@ -114,8 +119,8 @@ class Queen(Chess_Piece, Chess_Board, Chess_Game):
     def __init__(self, game) -> None:
         super()
         self.screen = game.thisScreen
-        self.thisImage = pygame.image.load("queen.jpg")
-        self.thisImage = pygame.transform.scale(self.thisImage, (95, 95))
+        self.topImage = pygame.transform.scale(pygame.image.load("tQueen.jpg"), (95, 95))
+        self.botImage = pygame.transform.scale(pygame.image.load("bQueen.jpg"), (95, 95))
 
 class Bishop(Chess_Piece, Chess_Board, Chess_Game): 
     """
@@ -125,8 +130,9 @@ class Bishop(Chess_Piece, Chess_Board, Chess_Game):
     def __init__(self, game) -> None:
             super()
             self.screen = game.thisScreen
-            self.thisImage = pygame.image.load("bishop.jpg")
-            self.thisImage = pygame.transform.scale(self.thisImage, (95, 95))
+            self.topImage = pygame.transform.scale(pygame.image.load("tBishop.jpg"), (95, 95))
+            self.botImage = pygame.transform.scale(pygame.image.load("bBishop.jpg"), (95, 95))
+            # self.botImage = pygame.transform.scale(pygame.image.load(""), (95, 95))
 
 class Knight(Chess_Piece, Chess_Board, Chess_Game):
     """
@@ -142,8 +148,8 @@ class Knight(Chess_Piece, Chess_Board, Chess_Game):
     def __init__(self, game) -> None:
         super()
         self.screen = game.thisScreen
-        self.thisImage = pygame.image.load("knight.jpg")
-        self.thisImage = pygame.transform.scale(self.thisImage, (95, 95))
+        self.topImage = pygame.transform.scale(pygame.image.load("tKnight.jpg"), (95, 95))
+        self.botImage = pygame.transform.scale(pygame.image.load("bKnight.jpg"), (95, 95))
 
 class Rook(Chess_Piece, Chess_Board, Chess_Game):
     """
@@ -153,8 +159,8 @@ class Rook(Chess_Piece, Chess_Board, Chess_Game):
     def __init__(self, game) -> None:
         super()
         self.screen = game.thisScreen
-        self.thisImage = pygame.image.load("rook.jpg")
-        self.thisImage = pygame.transform.scale(self.thisImage, (95, 95))
+        self.topImage = pygame.transform.scale(pygame.image.load("tRook.jpg"), (95, 95))
+        self.botImage = pygame.transform.scale(pygame.image.load("bRook.jpg"), (95, 95))
 
 class TakenPieces():
     """
